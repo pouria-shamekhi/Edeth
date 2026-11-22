@@ -1,91 +1,59 @@
-# Edeth — Multimedia Editor
+# Edeth: Audio Watermark Remover & Media Tool
 
-A modern multimedia editing tool built with **Go** and **FFmpeg**, featuring a beautiful dark-themed web UI with a green & black color palette.
-
+Edeth is a web-based media processing tool built with Go and FFmpeg.
+Its flagship feature is a custom audio engine that automatically finds and removes repeating audio watermarks (like demo chimes or vocal tags) from music tracks in under two seconds. Instead of relying on heavy AI models, it uses pure math (FFT and Spectral Subtraction) directly in memory.
+It also provides a simple, modern web interface for everyday video and audio editing tasks, saving you from memorizing complex FFmpeg terminal commands.
 ![Go](https://img.shields.io/badge/Go-1.27-00ADD8?logo=go)
 ![FFmpeg](https://img.shields.io/badge/FFmpeg-9.0-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
+<img width="1918" height="907" alt="image_2026-11-22_20-32-19" src="https://github.com/user-attachments/assets/edfa2500-533a-429c-b558-51da635daff8" />
 
-## Features
-
-### ⭐ Audio Watermark Remover (Main Feature)
-Remove audio watermarks using intelligent cross-correlation analysis and phase inversion.
-- Provide the watermarked audio file and a raw watermark sample
-- Automatic watermark position detection via cross-correlation
-- Volume-aware phase cancellation with optimal gain computation
-- Supports MP3, WAV, FLAC, AAC, OGG, and more
-
-### 📝 Add Subtitles
-Add subtitle tracks to video files with two modes:
-- **Burn-in**: Permanently render subtitles into the video
-- **Embed**: Add as a toggleable subtitle stream
-- Supports SRT, ASS, SSA, VTT formats
-
-### ✂️ Trim Media
-Cut audio or video files with precise start and end timestamps using stream copy (no re-encoding for speed).
-
-### 🎵 Extract Audio
-Separate audio tracks from video files into your preferred format:
-- MP3, WAV, AAC, FLAC output options
-
-### 🔀 Merge Audio
-Add audio tracks to video files with flexible options:
-- **Loop mode**: Audio loops to match video duration
-- **Timed placement**: Start audio at any timestamp
-- Mixes with existing audio track (or replaces if none exists)
-
-### 🗜️ Smart Video Compressor & Web Optimizer (New)
-Target file size encoding and web optimization:
-- **Discord 25MB preset**: Constrained bitrate encoding tailored to stay right under Discord's 25MB attachment ceiling
-- **Telegram 50MB preset**: High quality compression optimized for Telegram web sharing
-- **Web 720p / 1080p presets**: High-efficiency CRF streaming standard
-- **Custom Size**: Enter any target megabytes directly
-- **Codecs**: H.264 (Universal) and H.265 / HEVC (30-40% smaller)
-- **Resolution scaling**: 1080p, 720p, 480p, 360p or original
-
-### 🎧 Waveform Visualizer & Interactive A/B Comparison Player (New)
-- **Zero-latency A/B Switch**: Toggle instantaneously between Original (Watermarked) and Cleaned Audio during live playback
-- **Interactive Canvas Waveform**: Visual timeline with highlighted markers on detected watermark timestamps
-- **Media Previews Everywhere**: Embedded audio and video preview players across all feature pages (Watermark, Trim, Extract, Merge, Subtitle, Compress)
-- **On-the-fly `.srm` decoding**: Streams custom binary planar SRM watermarks directly into browser-compatible WAV audio via HTTP Range requests
-
-### 📡 Real-Time SSE Logging & Terminal Console (New)
-- Every background operation (FFmpeg transcode and DSP audio processing) pipes live stderr and status messages via Server-Sent Events (SSE) into a built-in terminal console in the UI.
-
-### 📂 Built-in File Browser
-Browse your filesystem with a beautiful modal file browser:
-- Drive listing (Windows)
-- Quick access to common folders
-- File type filtering by extension
-- Color-coded icons for audio, video, subtitle, and other files
-
-## Requirements
-
-- **Go 1.21+** (if building from source)
-- **FFmpeg** in PATH (if running natively)
-- **Docker** & **Docker Compose** (optional, for zero-dependency containerized run)
-
-## Quick Start with Docker (Recommended)
-
-Run on any OS (Windows, Linux, macOS) without installing Go or FFmpeg manually:
-
+✨ Features
+🎙️ Audio Watermark Removal: Fast and accurate removal of repeating audio tags using FFT Cross-Correlation and Spectral Subtraction (No AI/GPU required).
+✂️ Video Trimming: Supports both blazing-fast cuts (stream-copy) and frame-accurate cutting.
+🎵 Audio Extraction: Easily extract and convert video audio to MP3, WAV, or FLAC.
+📝 Subtitles: Embed soft subtitles (`.srt`) or burn hard subtitles directly into the video.
+🌐 Web GUI: A clean, responsive interface to manage your files and processing tasks.
+🐳 Docker Ready: Get up and running in seconds with a fully containerized environment.
+🚀 Quick Start (Recommended: Docker)
+The easiest way to run Edeth without worrying about dependencies is via Docker.
+Prerequisites
+Docker and Docker Compose
+Execution
+Clone the repository:
 ```bash
-docker compose up --build -d
-```
-
-Open your browser at `http://localhost:8420`.
-
-## Native Build & Run
-
+   git clone https://github.com/yourusername/edeth.git
+   cd edeth
+   ```
+Build and start the container:
 ```bash
-# Build binary
-go build -o edeth.exe .
-
-# Run
-./edeth.exe
-```
-
-The app opens automatically in your default browser at `http://localhost:8420`.
+   docker-compose up -d --build
+   ```
+Open your browser and go to: `http://localhost:8080`
+💻 Manual Setup (Local Environment)
+If you prefer to run it directly on your machine without Docker:
+Prerequisites
+Go (1.20+): Download Go
+FFmpeg (6.0+): Download FFmpeg (Make sure it's in your system `PATH`)
+Build & Run
+Clone the repo and navigate to it:
+```bash
+   git clone https://github.com/yourusername/edeth.git
+   cd edeth
+   ```
+Install Go dependencies:
+```bash
+   go mod tidy
+   ```
+Run the application:
+```bash
+   go run main.go server.go handlers.go ffmpeg.go watermark.go
+   ```
+Access the app at `http://localhost:8080`.
+🛠️ How It Works (Under the Hood)
+Edeth is designed for speed. It uses Go's `os/exec` and `io` packages to stream raw audio bytes directly from FFmpeg into RAM (Memory Pipes). This means the Digital Signal Processing (DSP) core—which handles the Fourier Transforms (FFT) and phase cancellation—runs directly in memory without creating temporary files on your hard drive.
+📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Project Structure
 
