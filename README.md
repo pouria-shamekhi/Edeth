@@ -1,7 +1,7 @@
 # Edeth
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ed72cfa5-a32e-44da-aa4b-34abf008565a" alt="Edeth Logo" width="150">
+  <img src="https://github.com/user-attachments/assets/ed72cfa5-a32e-44da-aa4b-34abf008565a" alt="Edeth Logo" width="200">
 </p>
 
 <p align="center">
@@ -154,8 +154,6 @@ Edeth provides a REST API for file management and multimedia processing.
   <img src="https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white" alt="FFmpeg">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
 </p>
 
 - **Go:** Backend application and processing logic
