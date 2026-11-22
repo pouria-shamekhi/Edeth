@@ -1,8 +1,7 @@
-
 # Edeth
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/7bb45580-74a9-4cd1-b19b-594362a2774d" alt="Edeth Logo" width="150">
+  <img src="https://github.com/user-attachments/assets/ed72cfa5-a32e-44da-aa4b-34abf008565a" alt="Edeth Logo" width="150">
 </p>
 
 <p align="center">
@@ -117,17 +116,36 @@ Other multimedia operations are handled through FFmpeg.
 
 ## 🔌 API Endpoints
 
-Edeth provides backend API functionality for its multimedia operations.
+Edeth provides a REST API for file management and multimedia processing.
 
-The API supports:
+### File Management
 
-- Browsing and selecting media files
-- Retrieving media information
-- Removing audio watermarks
-- Trimming video files
-- Extracting audio from video
-- Processing and embedding subtitles
-- Compressing media files
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/upload` | Upload a media file |
+| `GET` | `/api/browse` | Browse files and directories |
+| `GET` | `/api/drives` | Get available drives and quick-access locations |
+| `GET` | `/api/media-info` | Retrieve media file information |
+| `GET` | `/api/stream` | Stream media files with range support |
+
+### Media Processing
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/watermark/remove` | Remove audio watermarks |
+| `POST` | `/api/subtitle/add` | Add or burn subtitles into videos |
+| `POST` | `/api/trim` | Trim audio or video files |
+| `POST` | `/api/audio/extract` | Extract audio from video files |
+| `POST` | `/api/audio/merge` | Merge or mix audio with video |
+| `POST` | `/api/video/compress` | Compress videos with configurable settings |
+
+### Task Progress
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/progress/{taskId}` | Receive real-time processing updates using Server-Sent Events (SSE) |
+
+**Note:** Media processing endpoints return a task ID that can be used to monitor the operation through the progress endpoint.
 
 ## 🛠️ Built With
 
@@ -150,5 +168,4 @@ The API supports:
 
 <p align="center">
   Made with Go and FFmpeg.
-</p><img width="2752" height="1536" alt="Gemini_Generated_Image_5ictdn5ictdn5ict" src="https://github.com/user-attachments/assets/e889f854-4df6-4513-ae26-e523445197ca" />
 
