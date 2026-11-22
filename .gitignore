@@ -1,0 +1,43 @@
+# Binaries and executables
+edeth
+edeth.exe
+edeth.exe~
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binaries and output artifacts
+*.test
+*.out
+*_test_out.*
+*_test_mp3_out.*
+
+# Processed media outputs
+*_clean.*
+*_trimmed.*
+*_audio.*
+*_merged.*
+*_compressed.*
+*_subtitled.*
+
+# Temp upload files
+edeth-upload-*
+*.tmp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  edeth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: edeth-service
+    ports:
+      - "8420:8420"
+    environment:
+      - PORT=8420
+      - DOCKER=1
+      - HEADLESS=1
+    volumes:
+      # Optional: bind-mount local media directory for server-side processing
+      - ./media:/workspace
+    restart: unless-stopped
